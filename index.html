@@ -6,36 +6,117 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Challenge - DOM</title>
   </head>
+  <style>
+    body{
+      background: linear-gradient(150deg, #013a63 0%, #468faf 100%);
+    }
+    #container{
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+    #app {
+      box-shadow: rgba(184, 191, 136, 0.48) 6px 2px 16px 0px, rgba(224, 223, 223, 0.8) -6px -2px 16px 0px;
+      border-radius: 25px;
+      text-align: center;
+      padding: 50px;
+      width: 380px;
+      height: 400px;
+      margin: auto;
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      background: #fff;
+    }
+    #todo-title span{
+      font-family: "Lucida Console", "Courier New", monospace;
+      background: #fdf0d5;
+      color: #013a63;
+      padding: 10px;
+    }
+    #todo-output{
+      text-align: left !important;
+    }
+    #todo-input{
+      height: 41px;
+      padding: 0.71429rem;
+      border-radius: 8px;
+      border-width: 1px;
+      border-style: solid;
+      border-color:#b7cad6;
+      background-color:#ffffff;
+      box-sizing: border-box;
+      width: 70%;
+      min-width: 300px;
+    }
+    #todo-subtitle{
+      margin: 0 !important;
+    }
+    #todo-submit{
+      margin-top: 10px;
+      background-color: #468faf;
+      border: 1px solid #468faf;
+      border-radius: 1rem;
+      box-shadow: rgba(255, 255, 255, 0.15) 0 1px 0 inset,rgba(46, 54, 80, 0.075) 0 1px 1px;
+      color: #FFFFFF;
+      cursor: pointer;
+      font-size: 1rem;
+      padding: .5rem 1rem;
+    }
+  </style>
   <body>
     <div id="app">
-      <!-- TODO: Buatlah sebuah header dengan id todo-title -->
-      <!-- TODO: Buatlah sebuah subtitle dengan id todo-subtitle -->
+      <div id="container">
+        <!-- TODO: Buatlah sebuah header dengan id todo-title -->
+        <h1 id="todo-title"><span>To-do List</span></h1> 
+        <!-- TODO: Buatlah sebuah subtitle dengan id todo-subtitle -->
+        <h4 id="todo-subtitle"><em>What's your task today?</em></h4> 
 
-      <!-- Section: input -->
-      <!-- TODO: Buatlah sebuah input bertipe text dengan id todo-input -->
-      <!-- TODO: Buatlah sebuah button dengan id todo-submit -->
+        <!-- Section: input -->
+        <!-- TODO: Buatlah sebuah input bertipe text dengan id todo-input -->
+        <input type="text" id="todo-input"></input>
+        <br>
+        <!-- TODO: Buatlah sebuah button dengan id todo-submit -->
+        <button id="todo-submit">Submit</button>
+        <!-- Section output -->
+        <!-- TODO: Buatlah sebuah <ul> dengan id todo-output -->
+        <ul id="todo-output">
 
-      <!-- Section output -->
-      <!-- TODO: Buatlah sebuah <ul> dengan id todo-output -->
+        </ul> 
+      </div>
     </div>
 
     <!-- ! Untuk tantangan ini, script jangan diubah ke external js yah ! -->
     <script>
       // TODO: Deklarasi variable sesuai dengan kebutuhan di sini
-      let button;
-      let input;
-      let output;
+      let button = document.querySelector('#todo-submit');
+      let input = document.querySelector('#todo-input');
+      let output = document.querySelector('#todo-output');
 
       // TODO: Buatlah sebuah fungsi dengan nama fnClickHandler
       // Fungsi yang digunakan untuk menambahkan tulisan
       // Jangan ubah cara deklarasi fungsinya, cukup isi saja
-      function fnClickHandler(toDoItem) {}
+      function fnClickHandler(toDoItem) {
+        let list = document.createElement('li');
+        list.textContent = toDoItem;
+        output.append(list)
+      }
 
       // TODO: register event onclick / addEventListener untuk button
       // akan menjalankan fungsi fnClickHandler
-      
+      button.addEventListener('click', () => {
+        return fnClickHandler(input.value)
+      })
+
       // TODO: register event onkeypress / addEventListener untuk input
       // sehingga saat di input ditekan enter akan menjalankan fungsi fnClickHandler juga
+      input.addEventListener('keypress', () => {
+        if(event.key === 'Enter'){
+          return fnClickHandler(input.value)
+        }
+      })
     </script>
   </body>
 </html>
